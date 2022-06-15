@@ -1,0 +1,28 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  // UTILIZAR O MESMO BANCO DE DADOS (POSTGRESQL)
+  provider = "sqlite"
+
+  url = env("DATABASE_URL")
+}
+
+model Feedback {
+
+  id String @id @default(uuid())
+
+  // @id significa que é a PK da tabela
+  // @default(autoincrement()) serve para colocar auto incremento na PK
+  // @default(uuid()) gera um ID String grande
+
+  type       String
+  comment    String
+  screenshot String? // ? Significa que pode receber null
+
+  @@map("feedbacks")
+}
